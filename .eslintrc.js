@@ -28,6 +28,7 @@ module.exports = {
         'semi': 0,
         "indent": 0,
         "eol-last": 0,
-        'no-unused-vars': 0
+        'no-unused-vars': 0,
+        'space-before-function-paren': 0
     }
 }
