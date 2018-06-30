@@ -8,10 +8,16 @@ import goods from './components/goods/goods'
 import ratings from './components/ratings/ratings'
 import sellers from './components/sellers/sellers'
 import 'common/stylus/index.styl'
+
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(VueResource)
-const routes = [{ path: '/', component: goods }, { path: '/goods', component: goods }, { path: '/ratings', component: ratings }, { path: '/sellers', component: sellers }]
+const routes = [
+    { path: '/', component: goods },
+    { path: '/goods', component: goods },
+    { path: '/ratings', component: ratings },
+    { path: '/sellers', component: sellers }
+]
 let router = new VueRouter({
     linkActiveClass: 'active',
     routes
