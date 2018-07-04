@@ -1,5 +1,13 @@
+/*
+ * @Author: WaiHoYu 
+ * @Date: 2018-07-04 10:05:36 
+ * @Last Modified by:   WaiHoYu 
+ * @Last Modified time: 2018-07-04 10:05:361 
+ * @Description:  💖💖💖💖💖💖
+ */
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
