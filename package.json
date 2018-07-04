@@ -11,10 +11,11 @@
         "build": "node build/build.js"
     },
     "dependencies": {
+        "better-scroll": "^1.12.4",
         "stylus": "^0.54.5",
-        "vue": "^2.5.2",
-        "vue-router": "^2.2.0",
-        "vue-resource": "^1.0.1"
+        "vue": "^2.5.16",
+        "vue-resource": "^1.0.1",
+        "vue-router": "^2.2.0"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",

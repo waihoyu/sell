@@ -12,6 +12,7 @@ import 'common/stylus/index.styl'
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(VueResource)
+
 const routes = [
     { path: '/', component: goods },
     { path: '/goods', component: goods },
