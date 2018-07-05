@@ -27,10 +27,13 @@ const routes = [
     { path: '/ratings', component: ratings },
     { path: '/sellers', component: sellers }
 ]
+
 let router = new VueRouter({
     linkActiveClass: 'active',
     routes
 })
+
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
