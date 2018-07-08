@@ -50,13 +50,47 @@
     "goods": [{
             "name": "热销榜",
             "type": -1,
-            "foods": [{
+            "foods": [                
+                {
+                "name": "麦当劳",
+                "price": 11,
+                "oldPrice": 13,
+                "description": "麦当劳",
+                "sellCount": 500,
+                "rating": 80,
+                "info": "麦当劳也觉得心满意足",
+                "ratings": [{
+                        "username": "3******c",
+                        "rateTime": 1469281964000,
+                        "rateType": 0,
+                        "text": "很喜欢的麦当劳",
+                        "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
+                    },
+                    {
+                        "username": "2******3",
+                        "rateTime": 1469271264000,
+                        "rateType": 0,
+                        "text": "麦当劳",
+                        "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
+                    },
+                    {
+                        "username": "3******b",
+                        "rateTime": 1469261964000,
+                        "rateType": 1,
+                        "text": "西红柿炒鸡蛋",
+                        "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
+                    }
+                ],
+                "icon": "https://fuss10.elemecdn.com/1/32/c75a72f674052473fb35b5c8ab1d7jpeg.jpeg?imageMogr2/thumbnail/140x140/format/webp/quality/85",
+                "image": "http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/750/h/750"
+            },
+                {
                     "name": "皮蛋瘦肉粥",
                     "price": 10,
-                    "oldPrice": "",
+                    "oldPrice": 12,
                     "description": "咸粥",
                     "sellCount": 229,
-                    "rating": 100,
+                    "rating": 10,
                     "info": "一碗皮蛋瘦肉粥，总是我到粥店时的不二之选。香浓软滑，饱腹暖心，皮蛋的Q弹与瘦肉的滑嫩伴着粥香溢于满口，让人喝这样的一碗粥也觉得心满意足",
                     "ratings": [{
                             "username": "3******c",
