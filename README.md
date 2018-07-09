@@ -3,7 +3,7 @@
 My sell-app practice is based on the sell-project of ustbhuangyi/vue-sell.
 This my sell-app practice uses the MVVM framework -- Vue and the version is 2.5.16.
 ```
->  The source project is here: [ustbhuangyi/vue-sell](https://github.com/ustbhuangyi/vue-sell)
+>  The source project is here: [ustbhuangyi/vue-sell](https://github.com/waihoyu/sell).
  If you feel this project is usefull for you ,you can fork it or star it . Thanks!
 
 >  My github is https://github.com/waihoyu
