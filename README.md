@@ -1,7 +1,7 @@
 ## Introduce 
 ```bash
-My sell-app practice is based on the sell-project of ustbhuangyi/vue-sell.
-This my sell-app practice uses the MVVM framework -- Vue and the version is 2.5.16.
+My takeaway-app practice is based on the takeaway-project of ustbhuangyi/vue-sell.
+This takeaway-app practice uses the MVVM framework -- Vue and the version is 2.5.16.
 ```
 >  The source project is here: [waihoyu/sell](https://github.com/waihoyu/sell).
  If you feel this project is usefull for you ,you can fork it or star it . Thanks!
