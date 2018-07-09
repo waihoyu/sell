@@ -1,4 +1,5 @@
-# sell
+## My sell-app practice is based on the sell-project of ustbhuangyi/vue-sell .
+
 
 > sell app
 
