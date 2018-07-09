@@ -1,5 +1,5 @@
 ## My sell-app practice is based on the sell-project of ustbhuangyi/vue-sell .
-
+##  This my sell-app practice uses the MVVM framework -- Vue and the version is 2.5.16.
 
 > sell app
 
