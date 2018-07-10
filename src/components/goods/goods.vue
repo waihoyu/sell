@@ -2,19 +2,20 @@
     <div class="goods">
         <div class="menu-wrapper" ref = "menuWrapper">
             <ul>
-                <li v-for="item in goods" class="menu-item">
+                <li v-for="item in goods" class="menu-item" :key="item">
                     <span class="text border-1px">
                         <span v-show="item.type >0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
                     </span>
                 </li>
             </ul>
         </div>
+        
         <div class="foods-wrapper" ref = "foodsWrapper">
             <ul>
-                <li v-for="item in goods" class="food-list">
+                <li v-for="item in goods" class="food-list" :key="item">
                     <h1 class="title">{{item.name}}</h1>
                     <ul>
-                        <li v-for="food in item.foods" class="food-item border-1px">
+                        <li v-for="food in item.foods" class="food-item border-1px" :key="food">
                             <div class="icon">
                                 <img width="57" height="57" :src="food.icon" alt="">
                             </div>
