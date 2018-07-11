@@ -189,7 +189,7 @@
         .bulletin-title
             display inline-block
             vertical-align top
-            margin-top 8px
+            margin-top 7px
             width 22px
             height 12px
             bg-image('bulletin')
