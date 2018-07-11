@@ -18,13 +18,42 @@
                 </div>
             </div>
         </div>
+        <div class="ball-container">
+            <div v-for="(ball,index) in balls" :key="index">
+                <transition name="dropdown" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+                    <div v-show="ball.show" :key="index" class="ball">
+                        <div class="inner inner-hook">                       
+                        </div>
+                    </div>
+                </transition>
+             </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     data () {
-        return {} 
+        return {
+            balls: [
+                {
+                    show: false
+                },                
+                {
+                    show: false
+                },
+                {
+                    show: false
+                },
+                {
+                    show: false
+                },
+                {
+                    show: false
+                },                                                                
+            ],
+            dropballs: []
+        } 
     },
     props: {
         selectFoods:{
@@ -83,8 +112,61 @@ export default {
                 return 'enough' 
             }
         }
+    },
+    methods: {
+        drop (ref) {
+           for (let i = 0; i < this.balls.length; i++) {
+               let ball = this.balls[i]
+               if (! ball.show) {
+                   ball.show = true
+                   ball.ref = ref
+                   this.dropballs.push(ball)
+                   return  
+               }
+               
+           }
+        },
+        beforeEnter(ref) { //这里的el指的是小球的Dom,与drop(el)参数区分开
+                let count = this.balls.length;
+                while (count--) {
+                let ball = this.balls[count];
+                if (ball.show) {
+                    let rect = ball.ref.getBoundingClientRect(); //获取小球的相对于视口的位移(小球高度)
+                    let x = rect.left - 32;
+                    let y = -(window.innerHeight - rect.top - 22); //计算出与小球初始位置垂直方向上的距离，y轴向上为负
+                    ref.style.display = ''; //清空display
+                    ref.style.webkitTransform = `translate3d(0,${y}px,0)`;
+                    ref.style.transform = `translate3d(0,${y}px,0)`;
+                    //处理内层动画
+                    let inner = ref.getElementsByClassName('inner-hook')[0]; //使用inner-hook类来单纯被js操作
+                    inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
+                    inner.style.transform = `translate3d(${x}px,0,0)`;
+                }
+                }
+            },
+                
+            enter(ref, done) {
+                let rf = ref.offsetHeight; //触发重绘html
+                this.$nextTick(() => { //让动画效果异步执行,提高性能
+                    ref.style.webkitTransform = 'translate3d(0,0,0)';
+                    ref.style.transform = 'translate3d(0,0,0)';
+                    //处理内层动画
+                    let inner = ref.getElementsByClassName('inner-hook')[0]; //使用inner-hook类来单纯被js操作
+                    inner.style.webkitTransform = 'translate3d(0,0,0)';
+                    inner.style.transform = 'translate3d(0,0,0)';
+                    ref.addEventListener('transitionend', done); //Vue为了知道过渡的完成，否则无法进入到afterEnter中
+                });
+            },
+                
+            afterEnter(ref) {
+                let ball = this.dropballs.shift(); //完成一次动画就删除一个dropBalls的小球，否则触发N次事件，dropBalls则有N个元素
+                if (ball) {
+                    ball.show = false;
+                    ref.style.display = 'none'; //隐藏小球
+                }
+            }
+        }
     }
-}
 </script>
 
 <style lang="stylus">
@@ -181,4 +263,20 @@ export default {
                     &.enough
                         background #00b43c
                         color #fff
+        .ball-container
+            .ball
+                position fixed
+                left 32px
+                bottom 22px
+                z-index 1
+                // transition: all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+                transition: all 0.4s cubic-bezier(1,.01,0,1.54)
+                .inner
+                    width 16px
+                    height 16px
+                    border-radius 50%
+                    background rgb(0, 160, 220)
+                    transition  all 0.4s linear
+
+
 </style>
