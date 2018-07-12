@@ -1,6 +1,7 @@
 <template>
+<div>
     <div class="shopcart">
-        <div class="content">
+        <div class="content" @click = "toggleList">
             <div class="content-left">
                 <div class="logo-wrapper">
                     <div class="logo" :class="{'highlight':totalCount > 0}">
@@ -12,7 +13,7 @@
                 <div class="price" :class="{'highlight':totalCount > 0}">￥{{totalPrice}} 元</div>
                 <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
             </div>
-            <div class="content-right">
+            <div class="content-right" @click.stop = "pay">
                 <div class="pay" :class="payClass">
                     {{payDesc}}
                 </div>
@@ -28,11 +29,44 @@
                 </transition>
              </div>
         </div>
+        <transition name="fold">
+            <div class="shopcart-list" v-show = "listShow">
+                <div class="list-header">
+                    <h1 class="title">购物车</h1>
+                    <span class="empty" @click = "empty">清空</span>
+                </div>
+                <div class="list-content" ref="listContent">
+                    <ul>
+                        <li class="food" v-for="(food, index) in selectFoods" :key="index">
+                            <span class="name">{{food.name}}</span>
+                            <div class="price">
+                                <span>￥ {{food.price * food.count}}</span>
+                            </div>
+                            <div class="cartcontrol-wrapper">
+                                <cartcontrol :food="food"></cartcontrol>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </transition>
     </div>
+    <transition name = "fade">
+        <div class="list-mask" v-show = "listShow" transition="fade" @click = "hideList">
+        </div>
+    </transition>
+</div>
+
 </template>
 
 <script>
+    import BScroll from 'better-scroll'
+    import cartcontrol from '@/components/cartcontrol/cartcontrol'
+
 export default {
+    components: {
+      cartcontrol  
+    },
     data () {
         return {
             balls: [
@@ -52,7 +86,8 @@ export default {
                     show: false
                 },                                                                
             ],
-            dropballs: []
+            dropballs: [],
+            fold: true
         } 
     },
     props: {
@@ -111,9 +146,50 @@ export default {
             }else{
                 return 'enough' 
             }
+        },
+        listShow () {
+            if (!this.totalCount) {
+                this.fold = true
+                return false 
+            }
+            let show = !this.fold
+            if (show) {
+                this.$nextTick(() => {
+                    if (!this.scroll) {
+                        this.scroll = new BScroll(this.$refs.listContent, {
+                            click: true
+                        })                        
+                    }
+                    else
+                    {
+                        this.scroll.refresh()
+                    }
+                })
+            }
+            return show 
         }
     },
     methods: {
+        pay () {
+            if (this.totalPrice < this.minPrice) {
+                return  
+            }
+            window.alert(`本次订单需要支付 ￥${this.totalPrice}元`)
+        },
+        hideList () {
+            this.fold = true
+        },
+        empty () {
+            this.selectFoods.forEach((food) => {
+                food.count = 0
+            })
+        },
+        toggleList () {
+            if (!this.totalCount) {
+                return  
+            }
+            this.fold = !this.fold
+        },
         drop (ref) {
            for (let i = 0; i < this.balls.length; i++) {
                let ball = this.balls[i]
@@ -170,6 +246,7 @@ export default {
 </script>
 
 <style lang="stylus">
+    @import "../../common/stylus/mixin.styl"
     .shopcart
         position fixed
         left 0
@@ -277,6 +354,70 @@ export default {
                     border-radius 50%
                     background rgb(0, 160, 220)
                     transition  all 0.4s linear
-
-
+        .shopcart-list
+            position absolute
+            left 0
+            top 0
+            z-index -1
+            width 100%
+            transition  all 0.4s linear
+            transform translate3d(0, -100%, 0)
+            .fold-enter, .fold-leave-to
+                transform translate3d(0, 0, 0)
+            .list-header
+                height 40px
+                line-height 40px
+                padding 0 18px
+                background #f3f5f7
+                border-bottom 1px solid rgba(7, 17, 27, 0.1)
+                .title
+                    float left 
+                    font-size 14px
+                    color rgb(7, 17, 27)
+                .empty
+                    float right
+                    font-size 12px
+                    color rgb(0, 160, 220)
+            .list-content
+                padding 0 18px  
+                max-height 217px
+                overflow hidden
+                background #fff
+                .food
+                    position relative
+                    padding 12px 0
+                    box-sizing border-box
+                    border-1px(rgba(7, 17, 27, 0.1))
+                    .name
+                        line-height 24px
+                        font-size 14px
+                        color rgb(7, 17, 27)
+                    .price
+                        position absolute
+                        right 90px
+                        bottom 12px
+                        line-height 24px
+                        font-size 14px
+                        font-weight 700
+                        color rgb(240, 20, 20)
+                    .cartcontrol-wrapper
+                        position absolute
+                        right 0
+                        bottom 6px
+    .list-mask
+        position fixed
+        top 0
+        left 0
+        width 100%
+        height 100%
+        z-index 40
+        opacity 1
+        background rgba(7,17,27,0.8)
+        &.fade-in-active, &.fade-out-active
+            transition  all 0.4s linear
+            opacity 1
+            background rgba(7, 17, 27, 0.6)
+        &.fade-enter, &.fade-leave-to
+            opacity 1
+            background rgba(7,17,27,0.8)
 </style>

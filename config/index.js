@@ -73,5 +73,13 @@ module.exports = {
     // `npm run build --report`
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
+  },
+  devServer: {
+    historyApiFallbak: true,
+    hot: true,
+    host: "192.168.1.100",   //填写你自己的IP地址
+    port: 8080,   //填写刚刚在dev字段中找到的port端口号
+    inline: true,
+    progress: true
   }
 }

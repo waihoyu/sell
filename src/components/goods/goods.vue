@@ -146,17 +146,12 @@
             shopcart,
             cartcontrol
         }
-        // ,
-        // events:{
-        //     'cart-add' (target) {
-        //         this._drop(target)
-        //     }
-        // }
     }
 </script>
 
 <style lang="stylus" res="stylesheet/stylus">
 @import "../../common/stylus/mixin"
+
 .goods
     display flex
     position absolute
@@ -182,7 +177,6 @@
                 font-weight 700
                 .text
                     borde-none()
-
             .icon
                 display inline-block
                 vertical-align top
