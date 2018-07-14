@@ -2,7 +2,11 @@
     "seller": {
         "name": "木桶饭（大兴亦庄）",
         "description": "小二专送",
+<<<<<<< HEAD
         "deliveryTime": 48,
+=======
+        "deliveryTime": 38,
+>>>>>>> 3f2de36e0d1e55e6b11401a36bfcd8a7efa9b973
         "score": 4.2,
         "serviceScore": 4.1,
         "foodScore": 4.3,
