@@ -103,12 +103,12 @@
             })
         },
         methods: {
-            selectFood (index, event) {
+            selectFood (food, event) {
                 if (!event._constructed){
                     return
                 }
                 this.selectedFood = food
-                this.$refs.food.showFlag = true
+                this.$refs.food.show()
             },
             selectMenu (index, event) {
                 if (!event._constructed){

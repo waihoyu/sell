@@ -1,11 +1,14 @@
+
 <template>
-    <div class = "mainFood">
-        <transition name = "move">
-            <div v-show = "showFlag" class="food">  
-                111
+    <transition name="move">
+        <div v-show="showFlag" class="food">  
+            <div class="food-content">
+                <div class="image-header">
+                    <img :src="food.image" alt="">
+                </div>
             </div>
-        </transition>
-    </div>
+        </div>
+    </transition>
 </template>
 
 <script type="text/ecmascript-6">
@@ -37,6 +40,21 @@
         z-index 30  
         width 100%
         background blue
-        animation bounce-in .5s
-        transform all 0.3s linear
+        transition all 0.2s linear
+        transform translate3d(0, 0, 0)      
+    .move-enter, .move-leave-to
+        background red
+        transition all 0.2s linear
+        transform translate3d(100%, 0, 0)
+    .image-header
+        position relative
+        width 100%
+        height 0
+        padding-top 100%
+        img
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
 </style>
