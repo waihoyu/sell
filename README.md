@@ -9,6 +9,7 @@ This takeaway-app practice uses the MVVM framework -- Vue and the version is 2.5
 >  My github is https://github.com/waihoyu
 
 >Effect Picture
+
 ![avatar](./src/assets/pic01.png)
 ## Build Setup
 
