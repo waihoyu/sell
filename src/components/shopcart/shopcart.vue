@@ -1,248 +1,240 @@
 <template>
-<div>
-    <div class="shopcart">
-        <div class="content" @click = "toggleList">
-            <div class="content-left">
-                <div class="logo-wrapper">
-                    <div class="logo" :class="{'highlight':totalCount > 0}">
-                        <i class="icon-shopping_cart">
-                        </i>
-                    </div>
-                    <div class="num" v-show="totalCount > 0">{{totalCount}}</div>
-                </div>
-                <div class="price" :class="{'highlight':totalCount > 0}">￥{{totalPrice}} 元</div>
-                <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
-            </div>
-            <div class="content-right" @click.stop = "pay">
-                <div class="pay" :class="payClass">
-                    {{payDesc}}
-                </div>
-            </div>
-        </div>
-        <div class="ball-container">
-            <div v-for="(ball,index) in balls" :key="index">
-                <transition name="dropdown" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
-                    <div v-show="ball.show" :key="index" class="ball">
-                        <div class="inner inner-hook">                       
+    <div>
+        <div class="shopcart">
+            <div class="content" @click = "toggleList">
+                <div class="content-left">
+                    <div class="logo-wrapper">
+                        <div class="logo" :class="{'highlight':totalCount > 0}">
+                            <i class="icon-shopping_cart"></i>
                         </div>
+                        <div class="num" v-show="totalCount > 0">{{totalCount}}</div>
                     </div>
-                </transition>
-             </div>
-        </div>
-        <transition name="fold">
-            <div class="shopcart-list" v-show = "listShow">
-                <div class="list-header">
-                    <h1 class="title">购物车</h1>
-                    <span class="empty" @click = "empty">清空</span>
+                    <div class="price" :class="{'highlight':totalCount > 0}">￥{{totalPrice}} 元</div>
+                    <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
                 </div>
-                <div class="list-content" ref="listContent">
-                    <ul>
-                        <li class="food" v-for="(food, index) in selectFoods" :key="index">
-                            <span class="name">{{food.name}}</span>
-                            <div class="price">
-                                <span>￥ {{food.price * food.count}}</span>
-                            </div>
-                            <div class="cartcontrol-wrapper">
-                                <cartcontrol :food="food"></cartcontrol>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="content-right" @click.stop = "pay">
+                    <div class="pay" :class="payClass">
+                        {{payDesc}}
+                    </div>
                 </div>
             </div>
+            <div class="ball-container">
+                <div v-for="(ball,index) in balls" :key="index">
+                    <transition name="dropdown" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+                        <div v-show="ball.show" :key="index" class="ball">
+                            <div class="inner inner-hook"></div>
+                        </div>
+                    </transition>
+                </div>
+            </div>
+            <transition name="fold">
+                <div class="shopcart-list" v-show = "listShow">
+                    <div class="list-header">
+                        <h1 class="title">购物车</h1>
+                        <span class="empty" @click = "empty">清空</span>
+                    </div>
+                    <div class="list-content" ref="listContent">
+                        <ul>
+                            <li class="food" v-for="(food, index) in selectFoods" :key="index">
+                                <span class="name">{{food.name}}</span>
+                                <div class="price">
+                                    <span>￥ {{food.price * food.count}}</span>
+                                </div>
+                                <div class="cartcontrol-wrapper">
+                                    <cartcontrol :food="food"></cartcontrol>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </transition>
+        </div>
+        <transition name = "fade">
+            <div class="list-mask" v-show = "listShow" transition="fade" @click = "hideList"></div>
         </transition>
     </div>
-    <transition name = "fade">
-        <div class="list-mask" v-show = "listShow" transition="fade" @click = "hideList">
-        </div>
-    </transition>
-</div>
-
 </template>
 
 <script>
     import BScroll from 'better-scroll'
     import cartcontrol from '@/components/cartcontrol/cartcontrol'
-
-export default {
-    components: {
-      cartcontrol  
-    },
-    data () {
-        return {
-            balls: [
-                {
-                    show: false
-                },                
-                {
-                    show: false
-                },
-                {
-                    show: false
-                },
-                {
-                    show: false
-                },
-                {
-                    show: false
-                },                                                                
-            ],
-            dropballs: [],
-            fold: true
-        } 
-    },
-    props: {
-        selectFoods:{
-            type: Array,
-            default () {
-                return  [
+    export default {
+        components: {
+        cartcontrol  
+        },
+        data () {
+            return {
+                balls: [
                     {
-                        price: 10,
-                        count: 0
-                    }
-                ] 
-            }   
-        },
-        deliveryPrice: {
-            type: Number,
-            default: 0,
-        },        
-        minPrice: {
-            type: Number,
-            default: 20,
-        }
-    },
-    computed:{
-        totalPrice () {
-            let total = 0
-            this.selectFoods.forEach((food) => {
-                total += food.price * food.count
-            })
-            return total 
-        },
-        totalCount () {
-            let count = 0
-            this.selectFoods.forEach((food) => {
-                count += food.count
-            })
-            return count 
-        },
-        payDesc () {
-            if (this.totalPrice === 0) {
-                return `￥ ${this.minPrice} 元起送` 
-            }
-            else if (this.totalPrice < this.minPrice)
-            {
-                let diff = this.minPrice - this.totalPrice
-                return ` 还差￥${diff} 元起送` 
-            }
-            else
-            {
-                return `去结算` 
-            }
-        },
-        payClass () {
-            if (this.totalPrice < this.minPrice) {
-                return 'not-enough' 
-            }else{
-                return 'enough' 
-            }
-        },
-        listShow () {
-            if (!this.totalCount) {
-                this.fold = true
-                return false 
-            }
-            let show = !this.fold
-            if (show) {
-                this.$nextTick(() => {
-                    if (!this.scroll) {
-                        this.scroll = new BScroll(this.$refs.listContent, {
-                            click: true
-                        })                        
-                    }
-                    else
+                        show: false
+                    },                
                     {
-                        this.scroll.refresh()
-                    }
+                        show: false
+                    },
+                    {
+                        show: false
+                    },
+                    {
+                        show: false
+                    },
+                    {
+                        show: false
+                    },                                                                
+                ],
+                dropballs: [],
+                fold: true
+            } 
+        },
+        props: {
+            selectFoods:{
+                type: Array,
+                default () {
+                    return  [
+                        {
+                            price: 10,
+                            count: 0
+                        }
+                    ] 
+                }   
+            },
+            deliveryPrice: {
+                type: Number,
+                default: 0,
+            },        
+            minPrice: {
+                type: Number,
+                default: 20,
+            }
+        },
+        computed:{
+            totalPrice () {
+                let total = 0
+                this.selectFoods.forEach((food) => {
+                    total += food.price * food.count
                 })
-            }
-            return show 
-        }
-    },
-    methods: {
-        pay () {
-            if (this.totalPrice < this.minPrice) {
-                return  
-            }
-            window.alert(`本次订单需要支付 ￥${this.totalPrice}元`)
-        },
-        hideList () {
-            this.fold = true
-        },
-        empty () {
-            this.selectFoods.forEach((food) => {
-                food.count = 0
-            })
-        },
-        toggleList () {
-            if (!this.totalCount) {
-                return  
-            }
-            this.fold = !this.fold
-        },
-        drop (ref) {
-           for (let i = 0; i < this.balls.length; i++) {
-               let ball = this.balls[i]
-               if (! ball.show) {
-                   ball.show = true
-                   ball.ref = ref
-                   this.dropballs.push(ball)
-                   return  
-               }
-               
-           }
-        },
-        beforeEnter(ref) { //这里的el指的是小球的Dom,与drop(el)参数区分开
-                let count = this.balls.length;
-                while (count--) {
-                let ball = this.balls[count];
-                if (ball.show) {
-                    let rect = ball.ref.getBoundingClientRect(); //获取小球的相对于视口的位移(小球高度)
-                    let x = rect.left - 32;
-                    let y = -(window.innerHeight - rect.top - 22); //计算出与小球初始位置垂直方向上的距离，y轴向上为负
-                    ref.style.display = ''; //清空display
-                    ref.style.webkitTransform = `translate3d(0,${y}px,0)`;
-                    ref.style.transform = `translate3d(0,${y}px,0)`;
-                    //处理内层动画
-                    let inner = ref.getElementsByClassName('inner-hook')[0]; //使用inner-hook类来单纯被js操作
-                    inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
-                    inner.style.transform = `translate3d(${x}px,0,0)`;
+                return total 
+            },
+            totalCount () {
+                let count = 0
+                this.selectFoods.forEach((food) => {
+                    count += food.count
+                })
+                return count 
+            },
+            payDesc () {
+                if (this.totalPrice === 0) {
+                    return `￥ ${this.minPrice} 元起送` 
                 }
+                else if (this.totalPrice < this.minPrice)
+                {
+                    let diff = this.minPrice - this.totalPrice
+                    return ` 还差￥${diff} 元起送` 
+                }
+                else
+                {
+                    return `去结算` 
                 }
             },
-                
-            enter(ref, done) {
-                let rf = ref.offsetHeight; //触发重绘html
-                this.$nextTick(() => { //让动画效果异步执行,提高性能
-                    ref.style.webkitTransform = 'translate3d(0,0,0)';
-                    ref.style.transform = 'translate3d(0,0,0)';
-                    //处理内层动画
-                    let inner = ref.getElementsByClassName('inner-hook')[0]; //使用inner-hook类来单纯被js操作
-                    inner.style.webkitTransform = 'translate3d(0,0,0)';
-                    inner.style.transform = 'translate3d(0,0,0)';
-                    ref.addEventListener('transitionend', done); //Vue为了知道过渡的完成，否则无法进入到afterEnter中
-                });
+            payClass () {
+                if (this.totalPrice < this.minPrice) {
+                    return 'not-enough' 
+                }else{
+                    return 'enough' 
+                }
             },
-                
-            afterEnter(ref) {
-                let ball = this.dropballs.shift(); //完成一次动画就删除一个dropBalls的小球，否则触发N次事件，dropBalls则有N个元素
-                if (ball) {
-                    ball.show = false;
-                    ref.style.display = 'none'; //隐藏小球
+            listShow () {
+                if (!this.totalCount) {
+                    this.fold = true
+                    return false 
+                }
+                let show = !this.fold
+                if (show) {
+                    this.$nextTick(() => {
+                        if (!this.scroll) {
+                            this.scroll = new BScroll(this.$refs.listContent, {
+                                click: true
+                            })                        
+                        }
+                        else
+                        {
+                            this.scroll.refresh()
+                        }
+                    })
+                }
+                return show 
+            }
+        },
+        methods: {
+            pay () {
+                if (this.totalPrice < this.minPrice) {
+                    return  
+                }
+                window.alert(`本次订单需要支付 ￥${this.totalPrice}元`)
+            },
+            hideList () {
+                this.fold = true
+            },
+            empty () {
+                this.selectFoods.forEach((food) => {
+                    food.count = 0
+                })
+            },
+            toggleList () {
+                if (!this.totalCount) {
+                    return  
+                }
+                this.fold = !this.fold
+            },
+            drop (ref) {
+            for (let i = 0; i < this.balls.length; i++) {
+                let ball = this.balls[i]
+                if (! ball.show) {
+                    ball.show = true
+                    ball.ref = ref
+                    this.dropballs.push(ball)
+                    return  
+                }            
+            }
+            },
+            beforeEnter(ref) { //这里的el指的是小球的Dom,与drop(el)参数区分开
+                    let count = this.balls.length;
+                    while (count--) {
+                    let ball = this.balls[count];
+                    if (ball.show) {
+                        let rect = ball.ref.getBoundingClientRect(); //获取小球的相对于视口的位移(小球高度)
+                        let x = rect.left - 32;
+                        let y = -(window.innerHeight - rect.top - 22); //计算出与小球初始位置垂直方向上的距离，y轴向上为负
+                        ref.style.display = ''; //清空display
+                        ref.style.webkitTransform = `translate3d(0,${y}px,0)`;
+                        ref.style.transform = `translate3d(0,${y}px,0)`;
+                        //处理内层动画
+                        let inner = ref.getElementsByClassName('inner-hook')[0]; //使用inner-hook类来单纯被js操作
+                        inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
+                        inner.style.transform = `translate3d(${x}px,0,0)`;
+                    }
+                    }
+                },               
+                enter(ref, done) {
+                    let rf = ref.offsetHeight; //触发重绘html
+                    this.$nextTick(() => { //让动画效果异步执行,提高性能
+                        ref.style.webkitTransform = 'translate3d(0,0,0)';
+                        ref.style.transform = 'translate3d(0,0,0)';
+                        //处理内层动画
+                        let inner = ref.getElementsByClassName('inner-hook')[0]; //使用inner-hook类来单纯被js操作
+                        inner.style.webkitTransform = 'translate3d(0,0,0)';
+                        inner.style.transform = 'translate3d(0,0,0)';
+                        ref.addEventListener('transitionend', done); //Vue为了知道过渡的完成，否则无法进入到afterEnter中
+                    });
+                },                
+                afterEnter(ref) {
+                    let ball = this.dropballs.shift(); //完成一次动画就删除一个dropBalls的小球，否则触发N次事件，dropBalls则有N个元素
+                    if (ball) {
+                        ball.show = false;
+                        ref.style.display = 'none'; //隐藏小球
+                    }
                 }
             }
         }
-    }
 </script>
 
 <style lang="stylus">
