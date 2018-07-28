@@ -74,5 +74,7 @@
                 &.negative
                     background rgba(77, 85, 93, 0.2)
                     &.active
-                        background rgb(77, 85, 93)    
+                        background rgb(77, 85, 93) 
+        .switch
+            padding 12px 18px
 </style>
