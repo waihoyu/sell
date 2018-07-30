@@ -51,7 +51,7 @@
       // border-bottom 1px solid rgba(7, 17, 27, 0.1)
       border-1px(rgba(7, 17, 27, 0.1))
       .tab-item
-        flex 1
+        flex 1    
         text-align center
         & > a
           display block
@@ -60,5 +60,5 @@
           color rgb(77, 85, 93)
           &.active
             color rgb(240, 20, 20) 
+    .tab2
 </style>
-
