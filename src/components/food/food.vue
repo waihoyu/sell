@@ -38,7 +38,7 @@
                         <ul v-show="food.ratings && food.ratings.length">
                         <li class="rating-item" v-for="(rating,index) in food.ratings" :key="index">
                             <div class="user">
-                                <span class="name">{{ratings.username}}</span>
+                                <span class="name">{{rating.username}}</span>
                                 <img width="12" height="12" src="rating.avatar" alt="" class="avatar">
                             </div>
                             <div class="time">{{rating.rateTime}}</div>
@@ -220,4 +220,8 @@
                 margin-left 18px
                 font-size 14px
                 color rgb(7, 17, 27)
+            .rating-wrapper
+                padding 0 18px 
+                .rating-item
+                    position relative                 
 </style>
