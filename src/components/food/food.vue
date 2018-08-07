@@ -36,7 +36,7 @@
                     <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
                     <div class="rating-wrapper">
                         <ul v-show="food.ratings && food.ratings.length">
-                        <li class="rating-item" v-for="(rating,index) in food.ratings" :key="index">
+                        <li class="rating-item border-1px" v-for="(rating,index) in food.ratings" :key="index">
                             <div class="user">
                                 <span class="name">{{rating.username}}</span>
                                 <img width="12" height="12" src="rating.avatar" alt="" class="avatar">
@@ -116,6 +116,7 @@
 </script>
 
 <style lang="stylus">
+    @import "../../common/stylus/mixin"
     .food 
         position fixed
         left 0
@@ -223,5 +224,24 @@
             .rating-wrapper
                 padding 0 18px 
                 .rating-item
-                    position relative                 
+                    position relative
+                    padding 16px 0
+                    border-1px(rgba(7,17,27,0.1))
+                    .user
+                          position absolute
+                          right 0
+                          top 16px
+                          font-size 0
+                          line-height 12px
+                          .name
+                            display inline-block
+                            margin-right 6px
+                            vertical-align top
+                            font-size 10px
+                            color rgb(147, 153, 159)
+                        .avatar
+                        border-radius 64px
+                    .time
+                        line-height 12px
+
 </style>
