@@ -33,10 +33,10 @@
                 <split v-show="food.info"></split>
                 <div class="rating">
                     <h1 class="title">商品评价</h1>
-                    <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+                    <ratingselect  @select-type="onSelectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
                     <div class="rating-wrapper">
                         <ul v-show="food.ratings && food.ratings.length">
-                        <li class="rating-item border-1px" v-for="(rating,index) in food.ratings" :key="index">
+                        <li v-show= "needShow(rating.rateType, rating.text)" class="rating-item border-1px" v-for="(rating,index) in food.ratings" :key="index">
                             <div class="user">
                                 <span class="name">{{rating.username}}</span>
                                 <img width="12" height="12" src="rating.avatar" alt="" class="avatar">
@@ -61,10 +61,12 @@
     import split from '@/components/split/split'
     import Vue from 'vue'
     import ratingselect from '@/components/ratingselect/ratingselect'
+    import { eventBus } from 'components/event-bus';    
     // const POSITIVE = 0
     // const NEGATIVE = 1
     const ALL = 2
     export default {
+       
         data () {
             return {
                 showFlag: false,
@@ -83,6 +85,9 @@
             }
         },
         methods: {
+            onSelectType (type) {
+                this.selectType = type
+            },
             show () {
                 this.selectType = ALL
                 this.onlyContent = true
@@ -105,6 +110,18 @@
                 }
                 this.$emit('cart-add', event.target);
                 Vue.set(this.food, 'count', 1)
+            },
+            needShow (type, text) {
+                if (this.onlyContent && !text) {
+                    return false
+                }
+                if (this.selectType === ALL) {
+                    return true
+                }
+                else
+                {
+                    return type === this.selectType
+                }
             }
         },
         components: {
@@ -243,5 +260,22 @@
                         border-radius 64px
                     .time
                         line-height 12px
+                        margin-bottom 6px
+                        line-height 12px
+                        font-size 10px
+                        color rgb(147, 153, 159)
+                    .text
+                        line-height 16px
+                        font-size 12px
+                        color rgb(7, 17, 27)
+                        .icon-thumb_up,.icon-thumb_down
+                            margin-right 4px
+                            line-height 24px
+                            font-size 12px
+                        .icon-thumb_up
+                            color rgb(0,60,220)
+                        .icon-thumb_down
+                            color rgb(147, 153, 159)
+
 
 </style>

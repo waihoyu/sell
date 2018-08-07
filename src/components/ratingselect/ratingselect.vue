@@ -13,10 +13,16 @@
 </template>
 
 <script type="text/ecmascript">
+    import { eventBus } from 'components/event-bus';
     const POSITIVE = 0
     const NEGATIVE = 1
     const ALL = 2
     export default {
+        data () {
+            return {
+                selectType: ALL
+            }
+        },        
         props: {
             ratings: {
                 type: Array,
@@ -24,7 +30,7 @@
                     return []
                 }
             },
-            selectType: {
+            selectType2: {
                 type: Number,
                 default: ALL
             },
@@ -60,15 +66,15 @@
                 if (!event._constructed){
                     return
                 }
-                this.selectType = type
-                this.$dispatch('ratingtype.select', type)
+                this.selectType  = type
+                this.$emit('select-type', type)
             },
             toggleContent (event) {
                 if (!event._constructed){
                     return
                 }
                 this.onlyContent = ! this.onlyContent
-                this.$dispatch('content.toggle', this.onlyContent)
+                // this.$emit('content.toggle', this.onlyContent)
             }
         }
     }
