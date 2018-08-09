@@ -33,10 +33,10 @@
                 "description": "已加入“外卖保”计划,食品安全保障"
             }
         ],
-        "avatar": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+        "avatar": "./src/assets/images/seller_avatar_256px.jpg",
         "pics": [
-            "http://fuss10.elemecdn.com/8/71/c5cf5715740998d5040dda6e66abfjpeg.jpeg?imageView2/1/w/180/h/180",
-            "http://fuss10.elemecdn.com/b/6c/75bd250e5ba69868f3b1178afbda3jpeg.jpeg?imageView2/1/w/180/h/180",
+            "./src/assets/images/c5cf5715740998d5040dda6e66abfjpeg.jpeg",
+            "http://fuss101.elemecdn.com/b/6c/75bd250e5ba69868f3b1178afbda3jpeg.jpeg?imageView2/1/w/180/h/180",
             "http://fuss10.elemecdn.com/f/96/3d608c5811bc2d902fc9ab9a5baa7jpeg.jpeg?imageView2/1/w/180/h/180",
             "http://fuss10.elemecdn.com/6/ad/779f8620ff49f701cd4c58f6448b6jpeg.jpeg?imageView2/1/w/180/h/180"
         ],
@@ -81,7 +81,7 @@
                         "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
                     }
                 ],
-                "icon": "https://fuss10.elemecdn.com/1/32/c75a72f674052473fb35b5c8ab1d7jpeg.jpeg?imageMogr2/thumbnail/140x140/format/webp/quality/85",
+                "icon": "https://fuss10.elemecdn.com/1/321/c75a72f674052473fb35b5c8ab1d7jpeg.jpeg?imageMogr2/thumbnail/140x140/format/webp/quality/851",
                 "image": "http://fuss10.elemecdn.com/c/cd/c12745ed8a5171e13b427dbc39401jpeg.jpeg?imageView2/1/w/750/h/750"
             },
                 {

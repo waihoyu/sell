@@ -14,6 +14,7 @@ const portfinder = require('portfinder')
 const express = require('express')
 const app = express()
 var appData = require('../data.json')
+
 var seller = appData.seller
 var goods = appData.goods
 var ratings = appData.ratings

@@ -58,6 +58,7 @@ module.exports = {
      */
 
     productionSourceMap: true,
+    port:9090,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
