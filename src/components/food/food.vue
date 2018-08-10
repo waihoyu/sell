@@ -41,13 +41,13 @@
                                 <span class="name">{{rating.username}}</span>
                                 <img width="12" height="12" src="rating.avatar" alt="" class="avatar">
                             </div>
-                            <div class="time">{{rating.rateTime}}</div>
+                            <div class="time">{{rating.rateTime | formatDate}}</div>
                             <p class="text">
                                 <span :class="{'icon-thumb_up':rating.rateType === 0,'icon-thumb_down':rating.rateType === 1}"></span>{{rating.text}}
                             </p>
                         </li>   
                         </ul>
-                        <div class="no-rating" v-show = "!food.ratings || ! food.ratings.length"></div>
+                        <div class="no-rating" v-show = "!food.ratings || ! food.ratings.length">暂无评价</div>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,8 @@
     import split from '@/components/split/split'
     import Vue from 'vue'
     import ratingselect from '@/components/ratingselect/ratingselect'
-    import { eventBus } from 'components/event-bus';    
+    import { eventBus } from 'components/event-bus'; 
+    import {formatDate }from  'common/js/date'  
     // const POSITIVE = 0
     // const NEGATIVE = 1
     const ALL = 2
@@ -86,13 +87,19 @@
         methods: {
             onSelectType (type) {
                 this.selectType = type
+                this.$nextTick(() => {
+                this.scroll.refresh()
+                })
             },
             onOnlyContent (onlyContent) {
                 this.onlyContent = onlyContent
+                this.$nextTick(() => {
+                this.scroll.refresh()
+                })
             },            
             show () {
                 this.selectType = ALL
-                this.onlyContent = false
+                this.onlyContent = this.onlyContent
                 this.showFlag = true
                 this.$nextTick( () => {
                     if(!this.scroll){
@@ -114,7 +121,6 @@
                 Vue.set(this.food, 'count', 1)
             },
             needShow (type, text) {
-                console.log(this.onlyContent);
                 if (this.onlyContent && !text) {
                     return false
                 }
@@ -133,6 +139,12 @@
             },
             'content.toggle'(onlyContent){
                 this.onlyContent = onlyContent
+            }
+        },
+        filters: {
+            formatDate(time){
+                let date = new Date(time)
+                return formatDate(date,'yyyy-MM-dd hh:mm')
             }
         },
         components: {
@@ -287,4 +299,8 @@
                             color rgb(0,60,220)
                         .icon-thumb_down
                             color rgb(147, 153, 159)
+                .no-rating
+                    padding 16px  0
+                    font-size 12px
+                    color rgb(147, 153, 159)
 </style>

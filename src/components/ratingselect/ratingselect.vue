@@ -75,8 +75,7 @@
                     return
                 }
                 this.onlyContent = !this.onlyContent
-                this.$emit('only-content', this.onlyContent)
-                // console.log('5000');                
+                this.$emit('only-content', this.onlyContent)              
             }
         }
     }
