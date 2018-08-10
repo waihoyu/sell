@@ -21,7 +21,7 @@
         data () {
             return {
                 selectType: ALL,
-                onlyContent: this.onlyContent
+                onlyContent: false
             }
         },        
         props: {

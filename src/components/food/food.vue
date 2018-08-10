@@ -33,7 +33,7 @@
                 <split v-show="food.info"></split>
                 <div class="rating">
                     <h1 class="title">商品评价</h1>
-                    <ratingselect  @select-type="onSelectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+                    <ratingselect  @select-type="onSelectType" @only-content="onOnlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
                     <div class="rating-wrapper">
                         <ul v-show="food.ratings && food.ratings.length">
                         <li v-show= "needShow(rating.rateType, rating.text)" class="rating-item border-1px" v-for="(rating,index) in food.ratings" :key="index">
@@ -47,7 +47,7 @@
                             </p>
                         </li>   
                         </ul>
-                        <div class="no-rati" v-show="!food.ratings || ! food.ratings.length"></div>
+                        <div class="no-rating" v-show = "!food.ratings || ! food.ratings.length"></div>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             return {
                 showFlag: false,
                 selectType: ALL,
-                onlyContent: this.onlyContent,
+                onlyContent: false,
                 desc: {
                     all: '全部',
                     positive: '推荐',
@@ -87,6 +87,9 @@
             onSelectType (type) {
                 this.selectType = type
             },
+            onOnlyContent (onlyContent) {
+                this.onlyContent = onlyContent
+            },            
             show () {
                 this.selectType = ALL
                 this.onlyContent = false
@@ -111,6 +114,7 @@
                 Vue.set(this.food, 'count', 1)
             },
             needShow (type, text) {
+                console.log(this.onlyContent);
                 if (this.onlyContent && !text) {
                     return false
                 }
@@ -125,11 +129,9 @@
         },
         events:{
             'ratingtype.select'(type) {
-                console.log('111');
                 this.selectType = type
             },
             'content.toggle'(onlyContent){
-                console.log('122');
                 this.onlyContent = onlyContent
             }
         },
