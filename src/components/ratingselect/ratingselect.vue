@@ -20,7 +20,8 @@
     export default {
         data () {
             return {
-                selectType: ALL
+                selectType: ALL,
+                onlyContent: this.onlyContent
             }
         },        
         props: {
@@ -34,7 +35,7 @@
                 type: Number,
                 default: ALL
             },
-            onlyContent: {
+            onlyContent2: {
                 type: Boolean,
                 default: false
             },
@@ -73,8 +74,9 @@
                 if (!event._constructed){
                     return
                 }
-                this.onlyContent = ! this.onlyContent
-                // this.$emit('content.toggle', this.onlyContent)
+                this.onlyContent = !this.onlyContent
+                this.$emit('only-content', this.onlyContent)
+                // console.log('5000');                
             }
         }
     }

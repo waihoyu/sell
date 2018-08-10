@@ -43,7 +43,7 @@
                             </div>
                             <div class="time">{{rating.rateTime}}</div>
                             <p class="text">
-                                <span :class="{'icon-thumb_up':rating.rateType === 0,'icon-thumb_down':rating.rateType === 1}"></span>
+                                <span :class="{'icon-thumb_up':rating.rateType === 0,'icon-thumb_down':rating.rateType === 1}"></span>{{rating.text}}
                             </p>
                         </li>   
                         </ul>
@@ -65,13 +65,12 @@
     // const POSITIVE = 0
     // const NEGATIVE = 1
     const ALL = 2
-    export default {
-       
+    export default {   
         data () {
             return {
                 showFlag: false,
                 selectType: ALL,
-                onlyContent: true,
+                onlyContent: this.onlyContent,
                 desc: {
                     all: '全部',
                     positive: '推荐',
@@ -90,7 +89,7 @@
             },
             show () {
                 this.selectType = ALL
-                this.onlyContent = true
+                this.onlyContent = false
                 this.showFlag = true
                 this.$nextTick( () => {
                     if(!this.scroll){
@@ -122,6 +121,16 @@
                 {
                     return type === this.selectType
                 }
+            }
+        },
+        events:{
+            'ratingtype.select'(type) {
+                console.log('111');
+                this.selectType = type
+            },
+            'content.toggle'(onlyContent){
+                console.log('122');
+                this.onlyContent = onlyContent
             }
         },
         components: {
@@ -270,7 +279,7 @@
                         color rgb(7, 17, 27)
                         .icon-thumb_up,.icon-thumb_down
                             margin-right 4px
-                            line-height 24px
+                            line-height 16px
                             font-size 12px
                         .icon-thumb_up
                             color rgb(0,60,220)
