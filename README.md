@@ -12,6 +12,11 @@ This takeaway-app practice uses the MVVM framework -- Vue and the version is 2.5
 
 ![avatar](./src/assets/pic01.png)
 
+
+![avatar](./src/assets/food1.png)
+
+
+![avatar](./src/assets/food2.png)
 ## Build Setup
 
 ```bash
