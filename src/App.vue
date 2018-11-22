@@ -33,7 +33,7 @@
           // console.log(this.seller)
         }
       })
-    },    
+    },
     components: {
       'v-header': header
     }
@@ -41,7 +41,7 @@
 </script>
 
 /* eslint-disable */
-<style lang="stylus" res="stylesheet/stylus">
+<style lang="stylus" res="stylesheet/stylus" type="text/stylus">
     @import './common/stylus/mixin.styl'
     .tab
       display flex
@@ -51,7 +51,7 @@
       // border-bottom 1px solid rgba(7, 17, 27, 0.1)  nothing test nothing
       border-1px(rgba(7, 17, 27, 0.1))
       .tab-item
-        flex 1    
+        flex 1
         text-align center
         & > a
           display block
@@ -59,5 +59,5 @@
           font-size 14px
           color rgb(77, 85, 93)
           &.active
-            color rgb(240, 20, 20) 
+            color rgb(240, 20, 20)
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="ratingselect">
-        <div class="rating-type border-1px"> 
+        <div class="rating-type border-1px">
             <span @click="select(2, $event)" class="block positive" :class="{'active':selectType === 2}">{{desc.all}}<span class="count">{{ratings.length}}</span></span>
             <span @click="select(0, $event)" class="block positive" :class="{'active':selectType === 0}">{{desc.positive}}<span class="count">{{positives.length}}</span></span>
             <span @click="select(1, $event)" class="block negative" :class="{'active':selectType === 1}">{{desc.negative}}<span class="count">{{negatives.length}}</span></span>
@@ -23,7 +23,7 @@
                 selectType: ALL,
                 onlyContent: false
             }
-        },        
+        },
         props: {
             ratings: {
                 type: Array,
@@ -75,14 +75,14 @@
                     return
                 }
                 this.onlyContent = !this.onlyContent
-                this.$emit('only-content', this.onlyContent)              
+                this.$emit('only-content', this.onlyContent)
             }
         }
     }
 </script>
 
-<style lang="stylus">
-    @import "../../common/stylus/mixin" 
+<style lang="stylus" type="text/stylus">
+    @import "../../common/stylus/mixin.styl"
     .ratingselect
         .rating-type
             padding 18px 0
@@ -98,18 +98,18 @@
                 margin-right 8px
                 color rgb(77,85, 93)
                 &.active
-                    color #fff                    
+                    color #fff
                 .count
                     font-size 8px
                     margin-left 2px
-                &.positive 
+                &.positive
                     background rgba(0, 160, 220, 0.2)
                     &.active
                         background rgb(0, 160, 220)
                 &.negative
                     background rgba(77, 85, 93, 0.2)
                     &.active
-                        background rgb(77, 85, 93) 
+                        background rgb(77, 85, 93)
         .switch
             padding 12px 18px
             line-height 24px
@@ -118,7 +118,7 @@
             font-size 0
             &.on
                 .icon-check_circle
-                    color #00c850       
+                    color #00c850
             .icon-check_circle
                 display inline-block
                 margin-right 4px

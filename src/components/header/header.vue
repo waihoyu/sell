@@ -98,7 +98,7 @@
     }
 </script>
 
-<style lang="stylus" res="stylesheet/stylus">
+<style lang="stylus" res="stylesheet/stylus" type="text/stylus">
 @import '../../common/stylus/mixin'
 .header
     position relative
@@ -228,7 +228,7 @@
             transition all 0.5s
         &.fade-enter, &.fade-leave-to
             opacity 0
-            background rgba(7,17,27,0)          
+            background rgba(7,17,27,0)
         .detail-wrapper
             // background yellow
             min-height 100%
@@ -242,7 +242,7 @@
                     font-size 16px
                     font-weight 700
                 .star-wrapper
-                    // background yellow 
+                    // background yellow
                     margin-top 18px
                     padding 2px 0
                     text-align center
@@ -290,7 +290,7 @@
                                 bg-image('special_1')
                         .text
                             line-height 16px
-                            font-size 12px      
+                            font-size 12px
                 .bulletin
                     width 80%
                     margin 0 auto

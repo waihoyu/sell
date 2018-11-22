@@ -8,7 +8,7 @@
                     </span>
                 </li>
             </ul>
-        </div>        
+        </div>
         <div class="foods-wrapper" ref = "foodsWrapper">
             <ul>
                 <li v-for="(item, index) in goods" class="food-list food-list-hook" :key="index">
@@ -30,14 +30,14 @@
                                 </div>
                                 <div class="cartcontrol-wrapper">
                                     <cartcontrol :food="food" v-on:cart-add="_cartAdd"/>
-                                </div>                              
+                                </div>
                             </div>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.inPrice"> 
+        <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.inPrice">
         </shopcart>
          <food :food = "selectedFood" ref = "food"></food>
     </div>
@@ -45,7 +45,7 @@
 
 <script type="text/ecmascript-6">
     import BScroll from 'better-scroll'
-    import shopcart from '@/components/shopcart/shopcart'
+    import shopcart from '@/components/shopcart/shopcart.vue'
     import cartcontrol from '@/components/cartcontrol/cartcontrol'
     import food from '@/components/food/food'
     const ERR_OK = 0
@@ -61,7 +61,7 @@
                 listHeight: [],
                 scrollY: 0,
                 selectedFood:{}
-            } 
+            }
         },
         computed: {
             currentIndex () {
@@ -70,9 +70,9 @@
                       let height2 = this.listHeight[i + 1]
                       if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
                           return i
-                      }      
+                      }
                 }
-                return 0         
+                return 0
             },
             selectFoods () {
                 let foods = []
@@ -83,7 +83,7 @@
                         }
                     })
                 })
-                return foods 
+                return foods
             }
         },
         created(){
@@ -156,8 +156,8 @@
     }
 </script>
 
-<style lang="stylus" res="stylesheet/stylus">
-    @import "../../common/stylus/mixin"
+<style lang="stylus" res="stylesheet/stylus" type="text/stylus">
+    @import "../../common/stylus/mixin.styl"
     .goods
         display flex
         position absolute
@@ -236,10 +236,10 @@
                         height 14px
                         font-size 14px
                         color rgb(7,17,27)
-                    .desc,.extra               
+                    .desc,.extra
                         font-size 10px
                         line-height 10px
-                        color rgb(147,153,159) 
+                        color rgb(147,153,159)
                     .desc
                         margin-bottom 8px
                         line-height 12px
@@ -256,7 +256,7 @@
                         .old
                             text-decoration line-through
                             font-size 10px
-                            color rgb(147,153,159) 
+                            color rgb(147,153,159)
                     .cartcontrol-wrapper
                         position absolute
                         right 0

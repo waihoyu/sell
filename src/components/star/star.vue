@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/ecmascript-6" >
     const LENGTH = 5
     const CLS_ON = 'on'
     const CLS_HALF = 'half'
@@ -43,8 +43,8 @@
     }
 </script>
 
-<style lang="stylus" res="stylesheet/stylus">
-@import '../../common/stylus/mixin'
+<style lang="stylus" res="stylesheet/stylus" type="text/stylus">
+@import '../../common/stylus/mixin.styl';
 .star
     font-size 0
     .star-item
@@ -91,5 +91,5 @@
             &.half
                 bg-image('star24_half')
             &.off
-                bg-image('star24_off')                           
+                bg-image('star24_off')
 </style>

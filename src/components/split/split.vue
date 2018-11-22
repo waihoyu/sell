@@ -8,7 +8,7 @@
     }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" type="text/stylus">
     .split
         width 100%
         height 16px

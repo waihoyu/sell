@@ -19,12 +19,12 @@
             }
         },
         created () {
-            
+
         },
         methods: {
             addCart (event) {
                 if (!event._constructed) {
-                    return  
+                    return
                 }
                 if (!this.food.count) {
                     Vue.set(this.food,'count',1)
@@ -37,17 +37,17 @@
             },
             decreaseCart () {
                 if (!event._constructed) {
-                    return  
+                    return
                 }
                 if (this.food.count) {
                     this.food.count--
-                }            
+                }
             }
         }
     }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" type="text/stylus">
     .cartcontrol
         .cart-decrease
             display inline-block
@@ -67,7 +67,7 @@
                 opacity 0
                 transform translate3d(24px, 0, 0)
                 .inner
-                    transform rotate(360deg)   
+                    transform rotate(360deg)
         .cart-count
             display inline-block
             vertical-align top
@@ -82,5 +82,5 @@
             padding 6px
             font-size 24px
             line-height 24px
-            color rgb(0, 160, 220)  
+            color rgb(0, 160, 220)
 </style>

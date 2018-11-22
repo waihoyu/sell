@@ -60,16 +60,13 @@
     import cartcontrol from '@/components/cartcontrol/cartcontrol'
     export default {
         components: {
-        cartcontrol  
+        cartcontrol
         },
         data () {
             return {
                 balls: [
                     {
                         show: false
-                    },                
-                    {
-                        show: false
                     },
                     {
                         show: false
@@ -79,11 +76,14 @@
                     },
                     {
                         show: false
-                    },                                                                
+                    },
+                    {
+                        show: false
+                    },
                 ],
                 dropballs: [],
                 fold: true
-            } 
+            }
         },
         props: {
             selectFoods:{
@@ -94,13 +94,13 @@
                             price: 10,
                             count: 0
                         }
-                    ] 
-                }   
+                    ]
+                }
             },
             deliveryPrice: {
                 type: Number,
                 default: 0,
-            },        
+            },
             minPrice: {
                 type: Number,
                 default: 20,
@@ -112,40 +112,40 @@
                 this.selectFoods.forEach((food) => {
                     total += food.price * food.count
                 })
-                return total 
+                return total
             },
             totalCount () {
                 let count = 0
                 this.selectFoods.forEach((food) => {
                     count += food.count
                 })
-                return count 
+                return count
             },
             payDesc () {
                 if (this.totalPrice === 0) {
-                    return `￥ ${this.minPrice} 元起送` 
+                    return `￥ ${this.minPrice} 元起送`
                 }
                 else if (this.totalPrice < this.minPrice)
                 {
                     let diff = this.minPrice - this.totalPrice
-                    return ` 还差￥${diff} 元起送` 
+                    return ` 还差￥${diff} 元起送`
                 }
                 else
                 {
-                    return `去结算` 
+                    return `去结算`
                 }
             },
             payClass () {
                 if (this.totalPrice < this.minPrice) {
-                    return 'not-enough' 
+                    return 'not-enough'
                 }else{
-                    return 'enough' 
+                    return 'enough'
                 }
             },
             listShow () {
                 if (!this.totalCount) {
                     this.fold = true
-                    return false 
+                    return false
                 }
                 let show = !this.fold
                 if (show) {
@@ -153,7 +153,7 @@
                         if (!this.scroll) {
                             this.scroll = new BScroll(this.$refs.listContent, {
                                 click: true
-                            })                        
+                            })
                         }
                         else
                         {
@@ -161,13 +161,13 @@
                         }
                     })
                 }
-                return show 
+                return show
             }
         },
         methods: {
             pay () {
                 if (this.totalPrice < this.minPrice) {
-                    return  
+                    return
                 }
                 window.alert(`本次订单需要支付 ￥${this.totalPrice}元`)
             },
@@ -181,7 +181,7 @@
             },
             toggleList () {
                 if (!this.totalCount) {
-                    return  
+                    return
                 }
                 this.fold = !this.fold
             },
@@ -192,8 +192,8 @@
                     ball.show = true
                     ball.ref = ref
                     this.dropballs.push(ball)
-                    return  
-                }            
+                    return
+                }
             }
             },
             beforeEnter(ref) { //这里的el指的是小球的Dom,与drop(el)参数区分开
@@ -213,7 +213,7 @@
                         inner.style.transform = `translate3d(${x}px,0,0)`;
                     }
                     }
-                },               
+                },
                 enter(ref, done) {
                     let rf = ref.offsetHeight; //触发重绘html
                     this.$nextTick(() => { //让动画效果异步执行,提高性能
@@ -225,7 +225,7 @@
                         inner.style.transform = 'translate3d(0,0,0)';
                         ref.addEventListener('transitionend', done); //Vue为了知道过渡的完成，否则无法进入到afterEnter中
                     });
-                },                
+                },
                 afterEnter(ref) {
                     let ball = this.dropballs.shift(); //完成一次动画就删除一个dropBalls的小球，否则触发N次事件，dropBalls则有N个元素
                     if (ball) {
@@ -237,7 +237,7 @@
         }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" type="text/stylus" >
     @import "../../common/stylus/mixin.styl"
     .shopcart
         position fixed
@@ -251,8 +251,8 @@
             display flex
             background #141d27
             font-size: 0
-            color: rgba(255, 255, 255, 0.4)           
-            .content-left 
+            color: rgba(255, 255, 255, 0.4)
+            .content-left
                 flex 1
                 .logo-wrapper
                     background-color  red
@@ -316,7 +316,7 @@
                     line-height 24px
                     // color rgba(255, 255, 255, 0.4)
                     font-size 10px
-            .content-right 
+            .content-right
                 flex 0 0  105px
                 width 105px
                 .pay
@@ -363,7 +363,7 @@
                 background #f3f5f7
                 border-bottom 1px solid rgba(7, 17, 27, 0.1)
                 .title
-                    float left 
+                    float left
                     font-size 14px
                     color rgb(7, 17, 27)
                 .empty
@@ -371,7 +371,7 @@
                     font-size 12px
                     color rgb(0, 160, 220)
             .list-content
-                padding 0 18px  
+                padding 0 18px
                 max-height 217px
                 overflow hidden
                 background #fff

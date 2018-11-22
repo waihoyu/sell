@@ -1,7 +1,7 @@
 
 <template>
     <transition name="move">
-        <div v-show="showFlag" class="food" ref="food">  
+        <div v-show="showFlag" class="food" ref="food">
             <div class="food-content">
                 <div class="image-header">
                     <img :src="food.image" alt="">
@@ -45,7 +45,7 @@
                             <p class="text">
                                 <span :class="{'icon-thumb_up':rating.rateType === 0,'icon-thumb_down':rating.rateType === 1}"></span>{{rating.text}}
                             </p>
-                        </li>   
+                        </li>
                         </ul>
                         <div class="no-rating" v-show = "!food.ratings || ! food.ratings.length">暂无评价</div>
                     </div>
@@ -61,12 +61,12 @@
     import split from '@/components/split/split'
     import Vue from 'vue'
     import ratingselect from '@/components/ratingselect/ratingselect'
-    import { eventBus } from 'components/event-bus'; 
-    import {formatDate }from  'common/js/date'  
+    import { eventBus } from 'components/event-bus';
+    import {formatDate }from  'common/js/date'
     // const POSITIVE = 0
     // const NEGATIVE = 1
     const ALL = 2
-    export default {   
+    export default {
         data () {
             return {
                 showFlag: false,
@@ -96,7 +96,7 @@
                 this.$nextTick(() => {
                 this.scroll.refresh()
                 })
-            },            
+            },
             show () {
                 this.selectType = ALL
                 this.onlyContent = this.onlyContent
@@ -111,11 +111,11 @@
                 })
             },
             hide () {
-               this.showFlag = false  
+               this.showFlag = false
             },
             addFirst (food, event) {
                 if (!event._constructed) {
-                    return                    
+                    return
                 }
                 this.$emit('cart-add', event.target);
                 Vue.set(this.food, 'count', 1)
@@ -155,18 +155,18 @@
     }
 </script>
 
-<style lang="stylus">
-    @import "../../common/stylus/mixin"
-    .food 
+<style lang="stylus" type="text/stylus">
+    @import "../../common/stylus/mixin.styl"
+    .food
         position fixed
         left 0
         top 0
         bottom 48px
-        z-index 30  
+        z-index 30
         width 100%
         background #fff
         transition all 0.2s linear
-        transform translate3d(0, 0, 0)      
+        transform translate3d(0, 0, 0)
     .move-enter, .move-leave-to
         background #fff
         transition all 0.2s linear
@@ -262,7 +262,7 @@
                 font-size 14px
                 color rgb(7, 17, 27)
             .rating-wrapper
-                padding 0 18px 
+                padding 0 18px
                 .rating-item
                     position relative
                     padding 16px 0
@@ -280,7 +280,7 @@
                             font-size 10px
                             color rgb(147, 153, 159)
                         .avatar
-                        border-radius 64px
+                          border-radius 64px
                     .time
                         line-height 12px
                         margin-bottom 6px
