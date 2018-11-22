@@ -18,12 +18,11 @@
               </div>
               <div class="score-wrapper">
                 <span class="title">商品评分</span>
-                <!--<star :size="36" :score="seller.foodScore"></star>-->
+                <star :size="36" :score="seller.foodScore"></star>
                 <span class="score">{{seller.foodScore}}</span>
               </div>
               <div class="delivery-wrapper">
                 <span class="title">送达时间</span>
-                <!--<star :size="36" :score="seller.deliveryTime"></star>-->
                 <span class="score">{{seller.deliveryTime}}</span>
               </div>
             </div>
@@ -32,7 +31,7 @@
     </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script type="text/javascript">
   import star from '../star/star'
   export default {
     props:{
@@ -65,7 +64,6 @@
       border-right 1px solid rgba(7, 17,27,0.9)
       text-align center
       padding 6px 0
-      /*background red*/
       .score
         background yellow
         margin-bottom 6px
@@ -79,7 +77,6 @@
         font-size 12px
         color rgb(7, 17, 27)
       .rank
-        /*padding-bottom 6px*/
         line-height: 10px
         font-size 10px
         color rgb(147,153,159)
@@ -87,6 +84,4 @@
       background #00b3ee
       flex 1
       padding-left:24px
-      /*background #00d6b2*/
-
 </style>
