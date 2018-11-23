@@ -275,7 +275,7 @@
                             border 1px solid rgba(7,17,27,0.1)
                             border-radius 1px
                             background #fff
-                            color rgb(0,160,220)
+                            color rgb(147,153,159)
                     .time
                         position absolute
                         top 0

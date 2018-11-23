@@ -9,6 +9,7 @@ This takeaway-app practice uses the MVVM framework -- Vue and the version is 2.5
 >  My github is https://github.com/waihoyu
 
 > Result Picture
+![avatar](./src/assets/pic01.gif)
 
 ![avatar](./src/assets/pic01.png)
 
