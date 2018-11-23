@@ -57,9 +57,9 @@
 
 <script type="text/ecmascript-6">
     import BScroll from 'better-scroll'
+    import Vue from 'vue'
     import cartcontrol from '@/components/cartcontrol/cartcontrol'
     import split from '@/components/split/split'
-    import Vue from 'vue'
     import ratingselect from '@/components/ratingselect/ratingselect'
     import { eventBus } from 'components/event-bus';
     import {formatDate }from  'common/js/date'

@@ -50,7 +50,7 @@
     "goods": [{
             "name": "热销榜",
             "type": -1,
-            "foods": [                
+            "foods": [
                 {
                 "name": "麦当劳",
                 "price": 11,
@@ -59,13 +59,15 @@
                 "sellCount": 500,
                 "rating": 80,
                 "info": "麦当劳也觉得心满意足",
-                "ratings": [{
+                "ratings": [
+                  {
                         "username": "3******cd",
                         "rateTime": 1469281964000,
                         "rateType": 0,
                         "text": "很喜欢的麦当劳",
                         "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
-                    },{
+                    },
+                  {
                         "username": "B******cd",
                         "rateTime": 1469281964000,
                         "rateType": 0,
