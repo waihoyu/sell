@@ -14,7 +14,7 @@
         "axios": "^0.18.0",
         "better-scroll": "^1.13.4",
         "stylus": "^0.54.5",
-        "vue": "^2.5.22",
+        "vue": "^2.6.10",
         "vue-resource": "^1.5.1",
         "vue-router": "^2.8.1"
     },
