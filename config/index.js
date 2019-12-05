@@ -15,7 +15,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8082, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -52,13 +52,14 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    // publicPath: '/',
 
     /**
      * Source Maps
      */
 
     productionSourceMap: true,
-    port:9090,
+    port: 9090,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
@@ -78,8 +79,8 @@ module.exports = {
   devServer: {
     historyApiFallbak: true,
     hot: true,
-    host: "192.168.1.100",   //填写你自己的IP地址
-    port: 8080,   //填写刚刚在dev字段中找到的port端口号
+    host: "192.168.1.100", //填写你自己的IP地址
+    port: 8082, //填写刚刚在dev字段中找到的port端口号
     inline: true,
     progress: true
   }
